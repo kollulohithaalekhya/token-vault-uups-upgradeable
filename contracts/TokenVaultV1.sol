@@ -42,6 +42,7 @@ contract TokenVaultV1 is
                         INITIALIZATION
     //////////////////////////////////////////////////////////////*/
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
     }
@@ -67,8 +68,8 @@ contract TokenVaultV1 is
     /*//////////////////////////////////////////////////////////////
                         CORE LOGIC
     //////////////////////////////////////////////////////////////*/
+    function deposit(uint256 amount) public virtual {
 
-    function deposit(uint256 amount) external {
         require(amount > 0, "Amount must be > 0");
 
         uint256 fee = (amount * depositFee) / 10_000;
@@ -84,7 +85,7 @@ contract TokenVaultV1 is
         totalDeposits += credited;
     }
 
-    function withdraw(uint256 amount) external {
+    function withdraw(uint256 amount) public virtual {
         require(amount > 0, "Amount must be > 0");
         require(balances[msg.sender] >= amount, "Insufficient balance");
 
@@ -106,7 +107,13 @@ contract TokenVaultV1 is
         return depositFee;
     }
 
-    function getImplementationVersion() external pure returns (string memory) {
+    function getImplementationVersion()
+    public
+    pure
+    virtual
+    returns (string memory)
+{
+
         return "V1";
     }
 
