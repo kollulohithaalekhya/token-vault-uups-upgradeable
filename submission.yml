@@ -1,0 +1,28 @@
+project_name: TokenVault Upgradeable DeFi Vault
+author: Alekhya
+language: Solidity
+framework: Hardhat
+upgrade_pattern: UUPS
+
+description: >
+  A multi-version upgradeable ERC20 vault demonstrating safe UUPS upgrades,
+  storage layout preservation, role-based access control, yield generation,
+  withdrawal delays, and emergency mechanisms.
+
+features:
+  - UUPS upgradeable proxy
+  - Multi-version upgrades (V1 → V2 → V3)
+  - Yield generation
+  - Deposit pause
+  - Withdrawal delay
+  - Emergency withdraw
+  - Role-based access control
+  - Comprehensive tests
+
+tests:
+  unit_tests: true
+  upgrade_tests: true
+  security_tests: true
+
+network: local
+license: MIT
